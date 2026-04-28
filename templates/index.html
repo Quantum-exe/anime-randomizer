@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anime Randomizer</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { background-color: #121212; color: white; text-align: center; padding-top: 50px; }
+        .anime-card { background: #1e1e1e; border-radius: 15px; padding: 20px; max-width: 500px; margin: auto; }
+        img { border-radius: 10px; max-height: 400px; }
+        .btn-random { background-color: #ff4757; color: white; border: none; padding: 10px 25px; font-size: 1.2rem; }
+        .btn-random:hover { background-color: #ff6b81; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1 class="mb-4">🎬 what should we watch today?</h1>
+        
+        {% if anime %}
+        <div class="anime-card shadow-lg">
+            <img src="{{ anime.image }}" alt="Poster" class="img-fluid mb-3">
+            <h3>{{ anime.title }}</h3>
+            <p class="text-muted">{{ anime.english_title }}</p>
+            <p>⭐ score: <strong>{{ anime.score }}</strong></p>
+            <p style="text-align: justify; font-size: 0.9rem;">{{ anime.synopsis[:300] }}...</p>
+            <a href="{{ anime.url }}" target="_blank" class="btn btn-outline-info btn-sm mb-3">View Details</a>
+            <br>
+            <a href="/" class="btn btn-random">Roll Again</a>
+        </div>
+        {% else %}
+            <p>เกิดข้อผิดพลาดในการดึงข้อมูล กรุณาลองใหม่</p>
+            <a href="/" class="btn btn-random">ลองอีกครั้ง</a>
+        {% endif %}
+    </div>
+
+</body>
+</html>
